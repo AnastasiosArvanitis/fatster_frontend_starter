@@ -15,6 +15,9 @@ import {
   useColorScheme,
 } from 'react-native';
 
+import { Provider } from 'react-redux';
+import store from "./src/store";
+
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import MyScreen from "./src/screens/MyScreen/MyScreen";
 
@@ -27,16 +30,18 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-      >
-        <MyScreen />
-      </ScrollView>
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={styles.container}>
+        <StatusBar
+          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        />
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+        >
+          <MyScreen />
+        </ScrollView>
+      </SafeAreaView>
+    </Provider>
   );
 };
 
