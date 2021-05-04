@@ -4,6 +4,8 @@ npm install --save axios
 npm install redux react-redux --save
 npm install @types/react-redux --save
 npm install redux-saga --save
+npm install --save redux-actions
+npm i --save-dev @types/redux-actions
 
 tsconfig.json
 {
