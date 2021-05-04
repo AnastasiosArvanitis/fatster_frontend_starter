@@ -17,16 +17,16 @@ const initialState: IUserState = {
 
 export const usersReducer = handleActions<IUserState, any>(
   {
-    [types.FETCH_ALL_USERS_REQUEST]: (state: any, action: Action<any>) => ({
+    [types.FETCH_ALL_USERS_REQUEST]: (state: any = initialState, action: Action<any>) => ({
       ...state,
       loading: true,
     }),
-    [types.FETCH_ALL_USERS_SUCCESS]: (state: any, action: Action<any>) => ({
+    [types.FETCH_ALL_USERS_SUCCESS]: (state: any = initialState, action: Action<any>) => ({
       ...state,
       loading: false,
       users: action.payload
     }),
-    [types.FETCH_ALL_USERS_FAILURE]: (state: any, action: Action<any>) => ({
+    [types.FETCH_ALL_USERS_FAILURE]: (state: any = initialState, action: Action<any>) => ({
       ...state,
       loading: false,
       error: action.payload
