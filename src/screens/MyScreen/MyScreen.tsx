@@ -14,7 +14,7 @@ const MyScreen: FC<MyScreenProps> = () => {
 
   useEffect( () => {
     dispatch(fetchAllUsersRequest());
-  });
+  },[]);
 
   const users = useSelector((state: IRootState) => state.users.users);
   const error = useSelector((state: IRootState) => state.users.error);
@@ -26,10 +26,11 @@ const MyScreen: FC<MyScreenProps> = () => {
         Results
       </Text>
       <View>
-        {error ? error : null}
+        {loading ? <Text>loading......</Text> : null}
+        {error ? <Text>error</Text> : null}
         {users?.length ? users.map( user => {
           return <View><Text style={styles.text}>{user.name}</Text></View>
-        }) : 'no users'}
+        }) : <Text>'no users found'</Text>}
       </View>
     </View>
   );
