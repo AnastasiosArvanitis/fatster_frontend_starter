@@ -24,7 +24,9 @@ const MyScreen: FC<MyScreenProps> = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
-        Perdoulas
+        Results
+      </Text>
+      <Text style={styles.text}>
         {error ? error : null}
         {users ? users.id : 'no users'}
       </Text>
