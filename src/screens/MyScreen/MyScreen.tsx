@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAllUsersRequest } from '../../store/actions/';
+import { fetchAllUsersRequest, fetchUserByIdRequest } from '../../store/actions/';
 import { IRootState } from "../../store";
 
 interface MyScreenProps {
@@ -14,9 +14,11 @@ const MyScreen: FC<MyScreenProps> = () => {
 
   useEffect( () => {
     dispatch(fetchAllUsersRequest());
+    dispatch(fetchUserByIdRequest(1));
   },[]);
 
   const users = useSelector((state: IRootState) => state.users.users);
+  const oneUser = useSelector((state: IRootState) => state.users.user);
   const error = useSelector((state: IRootState) => state.users.error);
   const loading = useSelector((state: IRootState) => state.users.loading);
 
@@ -27,10 +29,11 @@ const MyScreen: FC<MyScreenProps> = () => {
       </Text>
       <View>
         {loading ? <Text>loading......</Text> : null}
-        {error ? <Text>error</Text> : null}
+        {error ? <Text>{error}</Text> : null}
         {users?.length ? users.map( user => {
-          return <View><Text style={styles.text}>{user.name}</Text></View>
+          return <View key={user.id}><Text key={user.id} style={styles.text}>{user.name}</Text></View>
         }) : <Text>'no users found'</Text>}
+        {oneUser ? <Text>One user: {oneUser.name}</Text> : null}
       </View>
     </View>
   );

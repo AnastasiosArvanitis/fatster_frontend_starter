@@ -30,6 +30,21 @@ export const usersReducer = handleActions<IUserState, any>(
       ...state,
       loading: false,
       error: action.payload
+    }),
+    // --
+    [types.FETCH_USER_BY_ID_REQUEST]: (state: any = initialState, action: Action<any>) => ({
+      ...state,
+      loading: true,
+    }),
+    [types.FETCH_USER_BY_ID_SUCCESS]: (state: any = initialState, action: Action<any>) => ({
+      ...state,
+      loading: false,
+      user: action.payload
+    }),
+    [types.FETCH_USER_BY_ID_FAILURE]: (state: any = initialState, action: Action<any>) => ({
+      ...state,
+      loading: false,
+      error: action.payload
     })
   },
   initialState

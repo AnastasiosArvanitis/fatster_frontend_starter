@@ -1,8 +1,14 @@
 import makeRequest from "../index";
 
-const allUsersUrl = '/users';
+const usersUrl = '/users';
 
-export default async function getAllUsers() {
-  const result = await makeRequest.get(allUsersUrl);
+export async function getAllUsers(): Promise<any> {
+  const result = await makeRequest.get(usersUrl);
+  return result.data;
+}
+
+export async function getUserById(userId: number): Promise<any> {
+  console.log(`Api user by id ${userId}`);
+  const result = await makeRequest.get(usersUrl + userId);
   return result.data;
 }
