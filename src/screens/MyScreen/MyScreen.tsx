@@ -14,7 +14,7 @@ const MyScreen: FC<MyScreenProps> = () => {
 
   useEffect( () => {
     dispatch(fetchAllUsersRequest());
-    dispatch(fetchUserByIdRequest(1));
+    dispatch(fetchUserByIdRequest());
   },[]);
 
   const users = useSelector((state: IRootState) => state.users.users);
