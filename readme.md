@@ -3,7 +3,7 @@
 React native, comme react.js est une nodejs based application, donc je suppose que vous avez déjà installé node.js sur votre ordinateur, sinon vous pouvez trouver l’exécutable sur cette page web :  https://nodejs.org/en/download/ . Avec nodejs npm sera installé, qui est le « node package manager » et ça va servir à installer les bibliothèques nécessaires pour l’exécution de l’application. Toutes les bibliothèques qui sont installées dans un nodejs based projet sont appelées dependencies et leur nom est enregistré dans le fichier package.json qui est stocké dans la racine du projet.
 
 Une fois que nodejs est installé nous pouvons installer le react native environnement. Pour cela il faut tout d’abord installer le cli, c’est-à-dire le « commande line interface » qui va nous servir à exécuter les commandes d’installation d’une nouvelle application. Pour l’installer il faut ouvrir un terminal sur Windows et exécuter la commande npm install -g react-native-cli . La flag -g signifie que ce package va être installé globalement sur votre ordinateur et nous pouvons l’utiliser dans n’importe quel dossier. Ensuite pour créer un nouveau projet nous pouvons exécuter la commande react-native init MyProject mais le problème c’est que l’équipe de Fatster utilise Typescript pour le développement et cette commande va créer un projet un Javascript, donc non compatible avec l’application principale. Pour transformer un projet javascript en typescript il faut que nous installions typescript dans le projet comme une dependency (une dépendance) et les types et pour cela il faut exécuter, après la commande init que nous avons exécutée, la commande npm install -D typescript @types/jest @types/react @types/react-native @types/react-test-renderer. Ensuite il faut créer un fichier appelé tsconfig.json , qui sert à donner des instructions au typescript compiler, dans la racine de votre projet et dedans coller ça : 
-{
+```javascript {
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -22,13 +22,13 @@ Une fois que nodejs est installé nous pouvons installer le react native environ
     "metro.config.js",
     "jest.config.js"
   ]
-}
+}```
 
 Enfin il faut créer un fichier appelé jest.config.js, dans la racine, et coller dedans ça :
-module.exports = {
+```javascript module.exports = {
   preset: 'react-native',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
-};
+};```
 
 Jest est l’application qui va exécuter votre app dans l’émulateur ou dans un portable via USB.
 Sinon vous pouvez toujours installer un template de react native en typescript qui va nous faire ça automatiquement, mais ça peut poser des problèmes, et c’est pour ça que je préfère vous expliquer d’abord comment installer typescript sans le template. Pour cela il faut exécuter la commande : npm react-native init MyApp --template react-native-template-typescript. 
@@ -60,7 +60,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/fun
 https://redux-saga.js.org/docs/introduction/GettingStarted
 
 Bon courage 😊
-
+```javascript 
 npx react-native init AwesomeProject
 npm install -D typescript @types/jest @types/react @types/react-native @types/react-test-renderer
 npm install --save axios
@@ -68,7 +68,7 @@ npm install redux react-redux --save
 npm install @types/react-redux --save
 npm install redux-saga --save
 npm install --save redux-actions
-npm i --save-dev @types/redux-actions
+npm i --save-dev @types/redux-actions```
 
 ---
 
@@ -93,6 +93,7 @@ https://docs.nestjs.com/
 
 
 Exemple de connexion avec une base de données. Dans le module central :
+```javascript
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ConfigModule } from '@nestjs/config';
@@ -117,16 +118,17 @@ import { User } from "./entities/User";
     UserModule,
   ]
 })
-export class MyModule {}
+export class MyModule {}```
 
 Le config module va charger les variables d’environment par le fichier .env que nous créons sur la racine du projet. Le user module et l’entité user sont des exemples qu’on peut créer et on peut avoir plusieurs entités qui ont des relations entre elles et évidemment plusieurs modules, qui correspondent à une entité, exemple une entité de client, de produit etc. Exemple de fichier .env :
+```javascript
 DB_TYPE=postgres
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=postgres
 DB_PASSWD=yourpasswd
 DB_DATABASE=database_name
-DB_SYNC=true
+DB_SYNC=true```
 
 Si la synchronisation est true à chaque fois que nous allons faire des changements dans les entités les tables de la bdd seront modifiées également, donc on risque de perde des data. Pour plus d’informations sur les entities :
 https://typeorm.io/#/entities
