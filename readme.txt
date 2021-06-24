@@ -1,4 +1,4 @@
-Fatster react native documentation
+###Fatster react native documentation
 
 React native, comme react.js est une nodejs based application, donc je suppose que vous avez déjà installé node.js sur votre ordinateur, sinon vous pouvez trouver l’exécutable sur cette page web :  https://nodejs.org/en/download/ . Avec nodejs npm sera installé, qui est le « node package manager » et ça va servir à installer les bibliothèques nécessaires pour l’exécution de l’application. Toutes les bibliothèques qui sont installées dans un nodejs based projet sont appelées dependencies et leur nom est enregistré dans le fichier package.json qui est stocké dans la racine du projet.
 
@@ -61,7 +61,6 @@ https://redux-saga.js.org/docs/introduction/GettingStarted
 
 Bon courage 😊
 
-
 npx react-native init AwesomeProject
 npm install -D typescript @types/jest @types/react @types/react-native @types/react-test-renderer
 npm install --save axios
@@ -70,4 +69,87 @@ npm install @types/react-redux --save
 npm install redux-saga --save
 npm install --save redux-actions
 npm i --save-dev @types/redux-actions
+
+---
+
+###Fatster Nestjs documentation
+
+Nestjs est une nodejs based application, donc je suppose que vous avez déjà installé node.js sur votre ordinateur, sinon vous pouvez trouver l’exécutable sur cette page web :  https://nodejs.org/en/download/. Avec nodejs npm sera installé, qui est le « node package manager » et ça va servir à installer les bibliothèques nécessaires pour l’exécution de l’application. Toutes les bibliothèques qui sont installées dans un nodejs based projet sont appelées dependencies et leur nom est enregistré dans le fichier package.json qui est stocké dans la racine du projet.
+
+Une fois que nodejs est installé nous pouvons installer le cli de nestjs en exécutant dans un terminal la commande npm i -g @nestjs/cli, c’est-à-dire le commande line interface qui va nous servir à exécuter les commandes de nestjs dans tous les dossier de notre ordinateur. La flag -g signifie que le package va être installé globalement dans notre ordinateur, donc accessible partout. 
+
+Ensuite nous avons besoin du package TypeORM qui va gérer les tables de base de données, les requêtes etc. Pour cela il faut exécuter dans un terminal la commande npm i -g typeorm. Plus d’info sur TypeORM ici : https://typeorm.io/
+
+Enfin il faut installer, toujours dans un terminal, le Typescript exécutable avec la commande npm i -g ts-node parce que Nestjs est écrit en Typescript et le code que nous allons écrire sera en Typescript, donc ce package va compiler et exécuter Typescript. C’est très probable que votre IDE vous demande d’installer Typescript globalement, si ce n’est pas fait déjà avec la commande npm i -g typescript@>=2.7. 
+
+Une fois que toutes les installations sont faites nous pouvons créer un projet avec la commande nest new project-name. Le Nestjs cli que nous avons installé va créer une application minimale que nous pouvons ensuite agrandir. Quand la création d’un nouveau projet est terminée il faut qu’on installe dans le projet les dependencies pour typeorm et PostgreSQL, qui est la base de données que l’équipe de Fatster utilise. Pour cela il faut exécuter la commande npm i -S @nestjs/typeorm typeorm pg. 
+Enfin il faut qu’on installe encore deux packages très importants, qui ne sont pas installés par défaut, d’abord npm i -s @nestjs/config pour configurer et utiliser des variables d’environnement pour la connexion à la base de données, et le deuxième et le npm i -s class-validator class-transformer qui va nous servir pour la sécurité. 
+Plus d’information sur les modules, contollers et providers :
+https://docs.nestjs.com/modules
+https://docs.nestjs.com/controllers
+https://docs.nestjs.com/providers
+https://docs.nestjs.com/
+
+
+
+Exemple de connexion avec une base de données. Dans le module central :
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { ConfigModule } from '@nestjs/config';
+import { UserModule } from "./user/user.module";
+import { User } from "./entities/User";
+
+@Module({
+  imports: [
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRoot({
+    type: 'postgres',
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWD,
+    database: process.env.DB_DATABASE,
+    entities: [
+      User,
+    ],
+    synchronize: Boolean(process.env.DB_SYNC)
+    }),
+    UserModule,
+  ]
+})
+export class MyModule {}
+
+Le config module va charger les variables d’environment par le fichier .env que nous créons sur la racine du projet. Le user module et l’entité user sont des exemples qu’on peut créer et on peut avoir plusieurs entités qui ont des relations entre elles et évidemment plusieurs modules, qui correspondent à une entité, exemple une entité de client, de produit etc. Exemple de fichier .env :
+DB_TYPE=postgres
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWD=yourpasswd
+DB_DATABASE=database_name
+DB_SYNC=true
+
+Si la synchronisation est true à chaque fois que nous allons faire des changements dans les entités les tables de la bdd seront modifiées également, donc on risque de perde des data. Pour plus d’informations sur les entities :
+https://typeorm.io/#/entities
+
+Pour lancer l’application il faut exécuter la commande npm run start:dev dans un terminal à la racine du projet.
+Quand une nouvelle application Nestjs est créée par défaut 5 fichiers sont créés : app.module.ts, app.controller.ts, app.service.ts, app.controller.spec.ts et main.ts mais c’est une bonne pratique de créer dans un autre dossier notre module avec son service et provider et d’exporter ce module dans le module du app. Comme ça nous pouvons avoir plusieurs modules indépendants qui peuvent être connectés avec le module central et il faut éviter d’utiliser le controller et le service du app, on peut même les supprimer. Par contre c’est le module central qui va charger la connexion à la bdd pour la rendre accessible aux autres modules. 
+
+Use full links :
+https://github.com/nestjsx/crud/wiki#why
+https://www.learmoreseekmore.com/2020/09/nestjs-crud-postgresql.html
+https://stackoverflow.com/questions/13142635/how-can-i-create-an-object-based-on-an-interface-file-definition-in-typescript
+https://github.com/typestack/class-validator#installation
+https://github.com/typeorm/typeorm/blob/master/docs/select-query-builder.md#getting-values-using-querybuilder
+https://github.com/typestack/class-validator#samples
+https://blog.bitsrc.io/understanding-generics-in-typescript-1c041dc37569
+https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841
+https://typeorm.io/#/
+
+Install PostgreSQL:
+https://www.postgresql.org/download/
+https://www.postgresqltutorial.com/
+
+
+
+Bon courage 😊
 
