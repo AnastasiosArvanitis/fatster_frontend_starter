@@ -25,7 +25,7 @@ Une fois que nodejs est installé nous pouvons installer le react native environ
 } 
 ```
 
-Enfin il faut créer un fichier appelé jest.config.js, dans la racine, et coller dedans ça :
+Enfin il faut créer un fichier appelé ``` jest.config.js ```, dans la racine, et coller dedans ça :
 ```javascript 
 module.exports = {
   preset: 'react-native',
@@ -34,7 +34,7 @@ module.exports = {
 ```
 
 Jest est l’application qui va exécuter votre app dans l’émulateur ou dans un portable via USB.
-Sinon vous pouvez toujours installer un template de react native en typescript qui va nous faire ça automatiquement, mais ça peut poser des problèmes, et c’est pour ça que je préfère vous expliquer d’abord comment installer typescript sans le template. Pour cela il faut exécuter la commande : npm react-native init MyApp --template react-native-template-typescript. 
+Sinon vous pouvez toujours installer un template de react native en typescript qui va nous faire ça automatiquement, mais ça peut poser des problèmes, et c’est pour ça que je préfère vous expliquer d’abord comment installer typescript sans le template. Pour cela il faut exécuter la commande : ``` npm react-native init MyApp --template react-native-template-typescript ```. 
 Plus de détails sur react native et typescript dans ce lien : https://reactnative.dev/docs/typescript
 Plus de détails sur l’installation sur ce lien : 
 https://reactnative.dev/docs/environment-setup
@@ -47,7 +47,7 @@ Si malgré tout ça vous n’arrivez pas à mettre en place un projet j’ai mis
 https://github.com/AnastasiosArvanitis/fatster_frontend_starter
 
 Si vous avez Git déjà installé vous pouvez exécuter la commande : 
-git clone https://github.com/AnastasiosArvanitis/fatster_frontend_starter.git dans un terminal, sinon vous pouvez télécharger le projet en format zip un appuyant sur le bouton vert, ou c’est marqué « Code »,  que vous allez voir sur la page GitHub du repo mentionné précédemment. Une fois que le projet est sur votre ordinateur il faut exécuter la commande npm install dans un terminal qui est dans la racine du projet pour installer tous les dépendances, il faut donc avoir installé nodejs avant en tout cas. Dans ce projet il y a déjà installé Redux et Redux-saga, comme l’équipe de développeurs chez Fatster font pour gérer le state global et il y a un exemple d’utilisation. Je vous encourage donc même si vous n’utilisez pas ce projet de le regarder. Il vaut mieux regarder le « History » du projet sur GitHub pour voir avec quel ordre j’ai créé les fichiers du Redux-saga.
+``` git clone https://github.com/AnastasiosArvanitis/fatster_frontend_starter.git ```  dans un terminal, sinon vous pouvez télécharger le projet en format zip un appuyant sur le bouton vert, ou c’est marqué « Code »,  que vous allez voir sur la page GitHub du repo mentionné précédemment. Une fois que le projet est sur votre ordinateur il faut exécuter la commande ``` npm install ``` dans un terminal qui est dans la racine du projet pour installer tous les dépendances, il faut donc avoir installé nodejs avant en tout cas. Dans ce projet il y a déjà installé Redux et Redux-saga, comme l’équipe de développeurs chez Fatster font pour gérer le state global et il y a un exemple d’utilisation. Je vous encourage donc même si vous n’utilisez pas ce projet de le regarder. Il vaut mieux regarder le « History » du projet sur GitHub pour voir avec quel ordre j’ai créé les fichiers du Redux-saga.
 Dans ce repo vous allez trouver également un simple de l’architecture que les devs chez Fatster ont mis en place, donc en tout cas c’est bien de jeter un coup d’œil.
 
 Use full links:
@@ -80,14 +80,14 @@ npm i --save-dev @types/redux-actions
 
 Nestjs est une nodejs based application, donc je suppose que vous avez déjà installé node.js sur votre ordinateur, sinon vous pouvez trouver l’exécutable sur cette page web :  https://nodejs.org/en/download/. Avec nodejs npm sera installé, qui est le « node package manager » et ça va servir à installer les bibliothèques nécessaires pour l’exécution de l’application. Toutes les bibliothèques qui sont installées dans un nodejs based projet sont appelées dependencies et leur nom est enregistré dans le fichier package.json qui est stocké dans la racine du projet.
 
-Une fois que nodejs est installé nous pouvons installer le cli de nestjs en exécutant dans un terminal la commande npm i -g @nestjs/cli, c’est-à-dire le commande line interface qui va nous servir à exécuter les commandes de nestjs dans tous les dossier de notre ordinateur. La flag -g signifie que le package va être installé globalement dans notre ordinateur, donc accessible partout. 
+Une fois que nodejs est installé nous pouvons installer le cli de nestjs en exécutant dans un terminal la commande  ``` npm i -g @nestjs/cli ```, c’est-à-dire le commande line interface qui va nous servir à exécuter les commandes de nestjs dans tous les dossier de notre ordinateur. La flag -g signifie que le package va être installé globalement dans notre ordinateur, donc accessible partout. 
 
-Ensuite nous avons besoin du package TypeORM qui va gérer les tables de base de données, les requêtes etc. Pour cela il faut exécuter dans un terminal la commande npm i -g typeorm. Plus d’info sur TypeORM ici : https://typeorm.io/
+Ensuite nous avons besoin du package TypeORM qui va gérer les tables de base de données, les requêtes etc. Pour cela il faut exécuter dans un terminal la commande ``` npm i -g typeorm ```. Plus d’info sur TypeORM ici : https://typeorm.io/
 
-Enfin il faut installer, toujours dans un terminal, le Typescript exécutable avec la commande npm i -g ts-node parce que Nestjs est écrit en Typescript et le code que nous allons écrire sera en Typescript, donc ce package va compiler et exécuter Typescript. C’est très probable que votre IDE vous demande d’installer Typescript globalement, si ce n’est pas fait déjà avec la commande npm i -g typescript@>=2.7. 
+Enfin il faut installer, toujours dans un terminal, le Typescript exécutable avec la commande ``` npm i -g ts-node ``` parce que Nestjs est écrit en Typescript et le code que nous allons écrire sera en Typescript, donc ce package va compiler et exécuter Typescript. C’est très probable que votre IDE vous demande d’installer Typescript globalement, si ce n’est pas fait déjà avec la commande ``` npm i -g typescript@>=2.7 ```. 
 
-Une fois que toutes les installations sont faites nous pouvons créer un projet avec la commande nest new project-name. Le Nestjs cli que nous avons installé va créer une application minimale que nous pouvons ensuite agrandir. Quand la création d’un nouveau projet est terminée il faut qu’on installe dans le projet les dependencies pour typeorm et PostgreSQL, qui est la base de données que l’équipe de Fatster utilise. Pour cela il faut exécuter la commande npm i -S @nestjs/typeorm typeorm pg. 
-Enfin il faut qu’on installe encore deux packages très importants, qui ne sont pas installés par défaut, d’abord npm i -s @nestjs/config pour configurer et utiliser des variables d’environnement pour la connexion à la base de données, et le deuxième et le npm i -s class-validator class-transformer qui va nous servir pour la sécurité. 
+Une fois que toutes les installations sont faites nous pouvons créer un projet avec la commande nest new project-name. Le Nestjs cli que nous avons installé va créer une application minimale que nous pouvons ensuite agrandir. Quand la création d’un nouveau projet est terminée il faut qu’on installe dans le projet les dependencies pour typeorm et PostgreSQL, qui est la base de données que l’équipe de Fatster utilise. Pour cela il faut exécuter la commande ``` npm i -S @nestjs/typeorm typeorm pg ```. 
+Enfin il faut qu’on installe encore deux packages très importants, qui ne sont pas installés par défaut, d’abord ``` npm i -s @nestjs/config ``` pour configurer et utiliser des variables d’environnement pour la connexion à la base de données, et le deuxième et le ``` npm i -s class-validator class-transformer ``` qui va nous servir pour la sécurité. 
 Plus d’information sur les modules, contollers et providers :
 https://docs.nestjs.com/modules
 https://docs.nestjs.com/controllers
@@ -125,7 +125,7 @@ import { User } from "./entities/User";
 export class MyModule {} 
 ```
 
-Le config module va charger les variables d’environment par le fichier .env que nous créons sur la racine du projet. Le user module et l’entité user sont des exemples qu’on peut créer et on peut avoir plusieurs entités qui ont des relations entre elles et évidemment plusieurs modules, qui correspondent à une entité, exemple une entité de client, de produit etc. Exemple de fichier .env :
+Le config module va charger les variables d’environment par le fichier ``` .env ``` que nous créons sur la racine du projet. Le user module et l’entité user sont des exemples qu’on peut créer et on peut avoir plusieurs entités qui ont des relations entre elles et évidemment plusieurs modules, qui correspondent à une entité, exemple une entité de client, de produit etc. Exemple de fichier ``` .env ``` :
 ```javascript
 DB_TYPE=postgres
 DB_HOST=localhost
@@ -139,8 +139,8 @@ DB_SYNC=true
 Si la synchronisation est true à chaque fois que nous allons faire des changements dans les entités les tables de la bdd seront modifiées également, donc on risque de perde des data. Pour plus d’informations sur les entities :
 https://typeorm.io/#/entities
 
-Pour lancer l’application il faut exécuter la commande npm run start:dev dans un terminal à la racine du projet.
-Quand une nouvelle application Nestjs est créée par défaut 5 fichiers sont créés : app.module.ts, app.controller.ts, app.service.ts, app.controller.spec.ts et main.ts mais c’est une bonne pratique de créer dans un autre dossier notre module avec son service et provider et d’exporter ce module dans le module du app. Comme ça nous pouvons avoir plusieurs modules indépendants qui peuvent être connectés avec le module central et il faut éviter d’utiliser le controller et le service du app, on peut même les supprimer. Par contre c’est le module central qui va charger la connexion à la bdd pour la rendre accessible aux autres modules. 
+Pour lancer l’application il faut exécuter la commande ``` npm run start:dev ``` dans un terminal à la racine du projet.
+Quand une nouvelle application Nestjs est créée par défaut 5 fichiers sont créés : ``` app.module.ts, app.controller.ts, app.service.ts, app.controller.spec.ts et main.ts ``` mais c’est une bonne pratique de créer dans un autre dossier notre module avec son service et provider et d’exporter ce module dans le module du app. Comme ça nous pouvons avoir plusieurs modules indépendants qui peuvent être connectés avec le module central et il faut éviter d’utiliser le controller et le service du app, on peut même les supprimer. Par contre c’est le module central qui va charger la connexion à la bdd pour la rendre accessible aux autres modules. 
 
 Use full links :
 https://github.com/nestjsx/crud/wiki#why
@@ -160,4 +160,6 @@ https://www.postgresqltutorial.com/
 
 
 Bon courage 😊
+
+#### N'hésitez pas à ajouter des informations que vous trouvez interessantes ou meme du code en faisant ``` fork ``` et ``` pull ``` sur ce repository!
 
