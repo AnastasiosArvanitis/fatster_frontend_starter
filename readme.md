@@ -1,4 +1,4 @@
-###Fatster react native documentation
+### Fatster react native documentation
 
 React native, comme react.js est une nodejs based application, donc je suppose que vous avez déjà installé node.js sur votre ordinateur, sinon vous pouvez trouver l’exécutable sur cette page web :  https://nodejs.org/en/download/ . Avec nodejs npm sera installé, qui est le « node package manager » et ça va servir à installer les bibliothèques nécessaires pour l’exécution de l’application. Toutes les bibliothèques qui sont installées dans un nodejs based projet sont appelées dependencies et leur nom est enregistré dans le fichier package.json qui est stocké dans la racine du projet.
 
@@ -72,7 +72,7 @@ npm i --save-dev @types/redux-actions
 
 ---
 
-###Fatster Nestjs documentation
+### Fatster Nestjs documentation
 
 Nestjs est une nodejs based application, donc je suppose que vous avez déjà installé node.js sur votre ordinateur, sinon vous pouvez trouver l’exécutable sur cette page web :  https://nodejs.org/en/download/. Avec nodejs npm sera installé, qui est le « node package manager » et ça va servir à installer les bibliothèques nécessaires pour l’exécution de l’application. Toutes les bibliothèques qui sont installées dans un nodejs based projet sont appelées dependencies et leur nom est enregistré dans le fichier package.json qui est stocké dans la racine du projet.
 
