@@ -22,13 +22,13 @@ Une fois que nodejs est installé nous pouvons installer le react native environ
     "metro.config.js",
     "jest.config.js"
   ]
-}```
+} ```
 
 Enfin il faut créer un fichier appelé jest.config.js, dans la racine, et coller dedans ça :
 ```javascript module.exports = {
   preset: 'react-native',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
-};```
+}; ```
 
 Jest est l’application qui va exécuter votre app dans l’émulateur ou dans un portable via USB.
 Sinon vous pouvez toujours installer un template de react native en typescript qui va nous faire ça automatiquement, mais ça peut poser des problèmes, et c’est pour ça que je préfère vous expliquer d’abord comment installer typescript sans le template. Pour cela il faut exécuter la commande : npm react-native init MyApp --template react-native-template-typescript. 
@@ -68,7 +68,7 @@ npm install redux react-redux --save
 npm install @types/react-redux --save
 npm install redux-saga --save
 npm install --save redux-actions
-npm i --save-dev @types/redux-actions```
+npm i --save-dev @types/redux-actions ```
 
 ---
 
@@ -118,7 +118,7 @@ import { User } from "./entities/User";
     UserModule,
   ]
 })
-export class MyModule {}```
+export class MyModule {} ```
 
 Le config module va charger les variables d’environment par le fichier .env que nous créons sur la racine du projet. Le user module et l’entité user sont des exemples qu’on peut créer et on peut avoir plusieurs entités qui ont des relations entre elles et évidemment plusieurs modules, qui correspondent à une entité, exemple une entité de client, de produit etc. Exemple de fichier .env :
 ```javascript
@@ -128,7 +128,7 @@ DB_PORT=5432
 DB_USER=postgres
 DB_PASSWD=yourpasswd
 DB_DATABASE=database_name
-DB_SYNC=true```
+DB_SYNC=true ```
 
 Si la synchronisation est true à chaque fois que nous allons faire des changements dans les entités les tables de la bdd seront modifiées également, donc on risque de perde des data. Pour plus d’informations sur les entities :
 https://typeorm.io/#/entities
